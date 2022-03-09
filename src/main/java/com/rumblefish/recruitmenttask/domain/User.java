@@ -1,6 +1,5 @@
 package com.rumblefish.recruitmenttask.domain;
 
-import com.rumblefish.recruitmenttask.infra.CreateUserRequest;
 import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkArgument;

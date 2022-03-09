@@ -1,5 +1,8 @@
 package com.rumblefish.recruitmenttask.infra;
 
+import lombok.Getter;
+
+@Getter
 public class ErrorMessage {
     private final String message;
 

@@ -1,12 +1,14 @@
 package com.rumblefish.recruitmenttask.infra;
 
 import com.rumblefish.recruitmenttask.app.UserService;
+import com.rumblefish.recruitmenttask.domain.Greeting;
 import com.rumblefish.recruitmenttask.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static java.lang.String.format;
 import static org.springframework.http.ResponseEntity.*;
 
 @Slf4j
@@ -17,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<UserResponse<User>> createUser(CreateUserRequest createUserRequest) {
+    public ResponseEntity<UserResponse<User>> createUser(@RequestBody CreateUserRequest createUserRequest) {
         log.info("creating user started");
         try {
             User createdUser = userService.createUser(createUserRequest);
@@ -25,21 +27,21 @@ public class UserController {
 
             return ok().body(new UserResponse<>(createdUser));
         } catch (Exception ex) {
-            log.info("creating user failed");
+            log.info(format("creating user failed, error=%s", ex.getMessage()));
             return badRequest().body(new UserResponse<>(ex.getMessage()));
         }
     }
 
-    @GetMapping("/{userId}/greetings")
-    public ResponseEntity<UserResponse<String>> getUserGreetings(@PathVariable Long userId) {
-        log.info("receiving greetings started");
+    @GetMapping("/{userId}/greeting")
+    public ResponseEntity<UserResponse<Greeting>> getUserGreeting(@PathVariable Long userId) {
+        log.info("receiving greeting started");
         try {
-            String userGreetings = userService.getGreetings(userId);
-            log.info("receiving greetings finished");
+            Greeting userGreeting = userService.getGreeting(userId);
+            log.info("receiving greeting finished");
 
-            return ok().body(new UserResponse<>(userGreetings));
+            return ok().body(new UserResponse<>(userGreeting));
         } catch (Exception ex) {
-            log.info("receiving greetings failed");
+            log.info("receiving greeting failed", ex);
             return badRequest().body(new UserResponse<>(ex.getMessage()));
         }
     }

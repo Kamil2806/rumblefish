@@ -15,13 +15,15 @@ public class UserRepositoryImpl implements UserRepository {
 
     public UserRepositoryImpl() {
         users = new HashMap<>();
-        userId = 0L;
+        userId = 1L;
     }
 
     @Override
     public User save(User user) {
         user.assignId(userId++);
-        return users.put(user.getId(), user);
+        users.put(user.getId(), user);
+
+        return user;
     }
 
     @Override

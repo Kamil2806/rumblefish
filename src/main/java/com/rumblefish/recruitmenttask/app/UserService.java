@@ -1,5 +1,6 @@
 package com.rumblefish.recruitmenttask.app;
 
+import com.rumblefish.recruitmenttask.domain.Greeting;
 import com.rumblefish.recruitmenttask.domain.User;
 import com.rumblefish.recruitmenttask.infra.CreateUserRequest;
 import com.rumblefish.recruitmenttask.domain.UserRepository;
@@ -19,10 +20,10 @@ public class UserService {
         return userRepository.save(User.from(createUserRequest));
     }
 
-    public String getGreetings(Long userId) {
+    public Greeting getGreeting(Long userId) {
         User user = userRepository.get(userId)
                 .orElseThrow(() -> new NoSuchElementException(format("User with given id does not exists, id=%s", userId)));
 
-        return user.getGreetings();
+        return user.greeting();
     }
 }

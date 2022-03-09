@@ -27,8 +27,8 @@ public class User {
         return name.matches("[a-zA-Z]+");
     }
 
-    public Greeting greeting() {
-        return new Greeting("Hello " + name);
+    public String greeting() {
+        return "Hello " + name;
     }
 
     public void assignId(Long id) {

@@ -6,7 +6,7 @@ import com.rumblefish.recruitmenttask.domain.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
+import java.util.NoSuchElementException;
 
 import static java.lang.String.format;
 
@@ -21,7 +21,7 @@ public class UserService {
 
     public String getGreetings(Long userId) {
         User user = userRepository.get(userId)
-                .orElseThrow(() -> new EntityNotFoundException(format("User with given id does not exists, id=%s", userId)));
+                .orElseThrow(() -> new NoSuchElementException(format("User with given id does not exists, id=%s", userId)));
 
         return user.getGreetings();
     }

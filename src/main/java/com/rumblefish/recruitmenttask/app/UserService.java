@@ -16,7 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User createUser(CreateUserRequest createUserRequest) {
-        return userRepository.save(User.from(createUserRequest));
+        return userRepository.save(User.from(createUserRequest.getName()));
     }
 
     public String getGreeting(Long userId) {

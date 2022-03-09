@@ -19,8 +19,8 @@ public class User {
         this.name = name;
     }
 
-    public static User from(CreateUserRequest createUserRequest) {
-        return new User(null, createUserRequest.getName());
+    public static User from(String name) {
+        return new User(null, name);
     }
 
     private static boolean containOnlyAlphabets(String name) {
@@ -32,6 +32,7 @@ public class User {
     }
 
     public void assignId(Long id) {
+        checkArgument(id != null, "id cannot be null");
         this.id = id;
     }
 }

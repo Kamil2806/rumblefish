@@ -1,7 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.6.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
+    id 'groovy'
 }
 
 group = 'com.rumblefish'
@@ -25,6 +25,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'com.google.guava:guava:28.2-jre'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.codehaus.groovy:groovy:3.0.5'
+    testImplementation 'org.spockframework:spock-core:2.0-M3-groovy-3.0'
+    testImplementation 'org.spockframework:spock-spring:2.0-M3-groovy-3.0'
 }
 
 tasks.named('test') {

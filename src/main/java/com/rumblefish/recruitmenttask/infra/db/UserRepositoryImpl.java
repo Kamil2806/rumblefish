@@ -3,10 +3,12 @@ package com.rumblefish.recruitmenttask.infra.db;
 import com.rumblefish.recruitmenttask.domain.User;
 import com.rumblefish.recruitmenttask.domain.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @AllArgsConstructor
+@Service
 public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository userRepository;
 
